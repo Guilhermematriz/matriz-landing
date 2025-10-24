@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ----------- Light/Dark tokens ----------- */
+/* ----------- Tokens light/dark ----------- */
 :root {
   --bg: #ffffff;
   --bg-soft: #f6f7f9;
@@ -26,37 +26,46 @@ html, body {
 }
 
 body {
-  background: linear-gradient(to bottom, var(--bg), color-mix(in oklab, var(--bg) 90%, var(--brand) 10%));
+  background: linear-gradient(to bottom, var(--bg), var(--bg-soft));
   color: var(--fg);
   @apply antialiased;
 }
 
-a { @apply underline underline-offset-2 decoration-[var(--accent)]; }
+a {
+  @apply underline underline-offset-2 decoration-[var(--accent)];
+}
 
 .card {
   @apply rounded-3xl border border-zinc-200/70 bg-white shadow-sm;
 }
 .dark .card {
-  @apply border-zinc-800/60 bg-[color-mix(in_oklab,var(--bg) 70%,#000 30%)] shadow-none;
+  @apply border-zinc-800/60 bg-zinc-900 shadow-none;
 }
 
 .btn {
   @apply rounded-2xl px-5 py-3 font-medium text-white transition active:scale-95;
   background-color: var(--brand);
 }
-.btn:hover { background-color: #081223; /* navyDeep */ }
+.btn:hover {
+  background-color: #081223;
+}
+
 .btn-outline {
   @apply rounded-2xl px-5 py-3 font-medium transition border;
   border-color: var(--accent);
   color: var(--accent);
 }
 .btn-outline:hover {
-  background-color: color-mix(in oklab, var(--accent) 12%, transparent);
+  background-color: rgba(201, 162, 39, 0.15);
 }
 
-.input, .textarea, .select {
+.input,
+.textarea,
+.select {
   @apply w-full rounded-xl border p-3 outline-none focus:ring-2 bg-white border-zinc-200;
 }
-.dark .input, .dark .textarea, .dark .select {
-  @apply bg-[color-mix(in_oklab,var(--bg) 70%,#000 30%)] border-zinc-800;
+.dark .input,
+.dark .textarea,
+.dark .select {
+  @apply bg-zinc-900 border-zinc-800;
 }
