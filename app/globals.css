@@ -2,5 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { min-height: 100%; background: #fff; }
-* { box-sizing: border-box; }
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  @apply text-zinc-900 antialiased;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
