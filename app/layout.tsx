@@ -1,22 +1,23 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import DarkToggle from "@/components/DarkToggle";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Imobiliária Matriz — Casa própria com tudo em um só lugar",
-  description:
-    "Correspondente Caixa + Engenharia + Obra com garantia. Simule em 1 minuto e fale com nosso time pelo WhatsApp.",
+  metadataBase: new URL("https://matriz-landing-gwII-agvvai.vercel.app"), // ajuste para seu domínio final
+  title: "Imobiliária Matriz — Landing + Simulador",
+  description: "Seu sonho, nosso compromisso. Construção completa com crédito, projeto e obra.",
   openGraph: {
-    title: "Imobiliária Matriz — Seu sonho é o nosso compromisso.",
+    title: "Imobiliária Matriz — Landing + Simulador",
     description:
-      "Casa própria com tudo em um só lugar. Simule em 1 minuto!",
-    url: "https://matriz-landing.vercel.app",
+      "Cuidamos de ponta a ponta: terreno, crédito (Correspondente Caixa), projeto e obra.",
+    url: "/",
     siteName: "Imobiliária Matriz",
     images: [
       {
-        url: "/og.jpg", // coloca uma imagem 1200x630 em /public/og.jpg
+        url: "/og-matriz.jpg", // coloque um arquivo real em /public/og-matriz.jpg
         width: 1200,
         height: 630,
         alt: "Imobiliária Matriz",
@@ -27,29 +28,29 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Imobiliária Matriz",
-    description: "Casa própria com tudo em um só lugar. Simule em 1 minuto!",
-    images: ["/og.jpg"],
+    title: "Imobiliária Matriz — Landing + Simulador",
+    description:
+      "Cuidamos de ponta a ponta: terreno, crédito (Correspondente Caixa), projeto e obra.",
+    images: ["/og-matriz.jpg"],
   },
+  icons: { icon: "/favicon.ico" }, // coloque um favicon em /public
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { color: "#ffffff", media: "(prefers-color-scheme: light)" },
+    { color: "#0a0d12", media: "(prefers-color-scheme: dark)" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body
-        className={`${inter.className} min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-200 text-zinc-900 dark:from-zinc-950 dark:to-zinc-900 dark:text-zinc-100 transition-colors duration-500`}
-      >
-        {/* Botão de modo escuro */}
-        <button
-          onClick={() =>
-            document.documentElement.classList.toggle("dark")
-          }
-          className="fixed top-4 right-4 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/80 dark:bg-zinc-800/80 px-3 py-1 text-sm shadow-md hover:bg-white dark:hover:bg-zinc-700 transition"
-        >
-          🌓 Modo
-        </button>
-
-        <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
+      <body className={`${inter.className} min-h-screen`}>
+        <div className="fixed right-4 top-4 z-50">
+          <DarkToggle />
+        </div>
+        {children}
       </body>
     </html>
   );
