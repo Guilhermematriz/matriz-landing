@@ -256,12 +256,21 @@ export default function ImobiliariaMatrizLanding_v3() {
 
             {!done ? (
               <div>
-                <AnimatePresence mode="wait">
-                  <motion.div key={steps[stepIndex]?.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className="mb-6">
-                    {steps[stepIndex]?.render}
+                <div className="mb-6">
+                      <AnimatePresence mode="wait">
+                      <motion.div
+                     key={steps[stepIndex]?.id}
+                       initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                      >
+       {steps[stepIndex]?.render}
                   </motion.div>
-                </AnimatePresence>
-                <div className="flex items-center justify-between">
+                  </AnimatePresence>
+                  </div>
+         
+                 <div className="flex items-center justify-between">
                   <button onClick={back} disabled={stepIndex === 0} className="text-zinc-600 underline disabled:opacity-40">Voltar</button>
                   {stepIndex < steps.length - 1 ? (
                     <button onClick={next} disabled={!canNext} className="rounded-2xl px-5 py-3 font-medium shadow-sm text-white disabled:opacity-50" style={{backgroundColor:PALETTE.navy}}>Continuar</button>
